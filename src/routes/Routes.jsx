@@ -8,6 +8,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import AddCar from "../page/AddCar";
 import MyCar from "../page/MyCar";
 import MyBookings from "../page/MyBookings";
+import Home from "../page/Home";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
     element: <HomeLaylout />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        index: '/home',
+        element: <Home/>
+      },
       {
         path: "/available-car",
         element: <AvailableCar />,

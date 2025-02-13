@@ -11,7 +11,7 @@ const Navbar = () => {
       {/* Home */}
       <li>
         <NavLink
-          to="/"
+          to="/home"
           className={({ isActive, isPending }) =>
             isActive
               ? "btn btn-warning text-black"
