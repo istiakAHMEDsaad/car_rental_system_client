@@ -17,7 +17,7 @@ const Navbar = () => {
               ? "btn btn-warning text-black"
               : isPending
               ? "pending"
-              : "btn btn-outline btn-warning text-gray-500"
+              : "btn btn-outline btn-warning text-zinc-700"
           }
         >
           <span>Home</span>
@@ -33,7 +33,7 @@ const Navbar = () => {
               ? "btn btn-warning text-black"
               : isPending
               ? "pending"
-              : "btn btn-outline btn-warning text-gray-500"
+              : "btn btn-outline btn-warning text-zinc-700"
           }
         >
           <span>Available Cars</span>
@@ -50,7 +50,7 @@ const Navbar = () => {
                 ? "btn btn-warning text-black"
                 : isPending
                 ? "pending"
-                : "btn btn-outline btn-warning text-gray-500"
+                : "btn btn-outline btn-warning text-zinc-700"
             }
           >
             <span>Add Car</span>
@@ -68,7 +68,7 @@ const Navbar = () => {
                 ? "btn btn-warning text-black"
                 : isPending
                 ? "pending"
-                : "btn btn-outline btn-warning text-gray-500"
+                : "btn btn-outline btn-warning text-zinc-700"
             }
           >
             <span>My Car</span>
@@ -86,7 +86,7 @@ const Navbar = () => {
                 ? "btn btn-warning text-black"
                 : isPending
                 ? "pending"
-                : "btn btn-outline btn-warning text-gray-500"
+                : "btn btn-outline btn-warning text-zinc-700"
             }
           >
             <span>My Bookings</span>

@@ -6,6 +6,9 @@ import avaTwo from "../assets/ai_2.avif";
 import avaThree from "../assets/ai_3.webp";
 import avaFour from "../assets/ai_4.jpg";
 
+import Aos from "aos";
+import { useEffect } from "react";
+
 const testimonials = [
   {
     name: "John Doe",
@@ -34,8 +37,12 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
+  useEffect(() => {
+        Aos.init({duration: 1500});
+      }, []);
+  
   return (
-    <div className='container mx-auto px-2 flex flex-col md:grid md:grid-cols-2 md:gap-2'>
+    <div data-aos="fade-up" className='container mx-auto px-2 flex flex-col md:grid md:grid-cols-2 md:gap-2'>
       {testimonials.map((item, index) => (
         <div
           key={index}
