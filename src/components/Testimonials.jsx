@@ -35,7 +35,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div className='container mx-auto my-10 px-2 flex flex-col md:grid md:grid-cols-2 md:gap-2'>
+    <div className='container mx-auto px-2 flex flex-col md:grid md:grid-cols-2 md:gap-2'>
       {testimonials.map((item, index) => (
         <div
           key={index}

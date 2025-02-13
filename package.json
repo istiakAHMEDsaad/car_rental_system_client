@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.6",
+    "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
     "axios": "^1.7.9",
     "firebase": "^11.3.0",
     "framer-motion": "^12.4.2",

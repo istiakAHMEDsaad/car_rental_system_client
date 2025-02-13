@@ -1,8 +1,16 @@
 import { FaCar, FaDollarSign, FaRegClock, FaHeadset } from "react-icons/fa";
+import Aos from "aos";
+import { useEffect } from "react";
+
+
 const WhyChooseUs = () => {
+  useEffect(() => {
+    Aos.init({duration: 1500});
+  }, []);
+
   return (
-    <div className='my-10 container mx-auto'>
-      <h3 className='text-3xl font-semibold text-center mb-6'>
+    <div data-aos="fade-up"  className='my-10 container mx-auto'>
+      <h3 className='text-3xl font-semibold text-center text-zinc-800 italic mb-6'>
         Why Choose Us?
       </h3>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center'>
