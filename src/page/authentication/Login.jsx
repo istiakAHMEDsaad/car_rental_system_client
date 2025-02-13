@@ -1,11 +1,17 @@
 import { useContext } from 'react';
 import { IoArrowBack } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
-  const { logIn } = useContext(AuthContext);
+  const { logIn, signInWithGoogle, handleResetPassword, logOut, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || '/';
+  const userMail = user?.email;
+  
+  // Login with email & password
   const handleLogin = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -15,10 +21,33 @@ const Login = () => {
     try {
       await logIn(email, password);
       toast.success('Login user successfully');
+      navigate(from, {replace: true});
     } catch (error) {
       toast.error(error?.message);
     }
   };
+
+  // Google login
+  const handleGoogleLogin = async() => {
+    try {
+      await signInWithGoogle();
+      toast.success('Login Successful');
+      navigate(from, {replace: true})
+    } catch (error) {
+      toast.error(error?.message)
+    }
+  }
+
+  // Reset Password
+  const handlePasswordReset = async() => {
+    try {
+      await handleResetPassword(userMail);
+      logOut();
+      navigate('/login');
+    } catch (error) {
+      toast.error(error?.message);
+    }
+  }
 
   return (
     <div className='h-screen'>
@@ -40,8 +69,8 @@ const Login = () => {
               Competently exploit B2C synergy via holistic e-markets.
               Dynamically productivate customer directed partnerships.
             </p>
-            {/* Login */}
-            <button className='btn bg-white text-black border-[#e5e5e5]'>
+            {/* Google Login */}
+            <button onSubmit={handleGoogleLogin} className='btn bg-white text-black border-[#e5e5e5]'>
               <svg
                 aria-label='Google logo'
                 width='16'
@@ -73,7 +102,7 @@ const Login = () => {
             </button>
           </div>
 
-          {/* right side */}
+          {/* right side login with email & password */}
           <form
             onSubmit={handleLogin}
             className='card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl lg:basis-[40%] mx-auto'
@@ -95,7 +124,7 @@ const Login = () => {
                   placeholder='Password'
                 />
                 <div>
-                  <a className='link link-hover'>Forgot password?</a>
+                  <a onClick={handlePasswordReset} className='link link-hover'>Forgot password?</a>
                 </div>
                 <button className='btn btn-neutral mt-4'>Login</button>
                 <Link to={"/signup"} className='btn btn-info mt-4'>Sign Up</Link>
