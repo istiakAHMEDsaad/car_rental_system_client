@@ -1,4 +1,5 @@
 import { Typewriter } from "react-simple-typewriter";
+import Carousel from "../components/Carousel";
 
 const Home = () => {
   return (
@@ -19,7 +20,9 @@ const Home = () => {
         </span>
       </h2>
 
-      
+      <div>
+        <Carousel/>
+      </div>
     </div>
   );
 };
