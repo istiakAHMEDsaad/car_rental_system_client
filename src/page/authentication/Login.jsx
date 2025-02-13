@@ -1,15 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { IoArrowBack } from 'react-icons/io5';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
-  const { logIn, signInWithGoogle, handleResetPassword, logOut, user } = useContext(AuthContext);
+  const { logIn, signInWithGoogle, handleResetPassword, logOut} = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || '/';
-  const userMail = user?.email;
+  
+  const userMail = useRef()
   
   // Login with email & password
   const handleLogin = async (event) => {
@@ -40,8 +41,9 @@ const Login = () => {
 
   // Reset Password
   const handlePasswordReset = async() => {
+    const mail = userMail?.current?.value;
     try {
-      await handleResetPassword(userMail);
+      await handleResetPassword(mail);
       logOut();
       navigate('/login');
     } catch (error) {

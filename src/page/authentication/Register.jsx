@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { IoArrowBack } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import { IoWarning } from "react-icons/io5";
 
 const Register = () => {
   const { createUser, updateUserProfile, setUser, signInWithGoogle } =
@@ -17,6 +18,19 @@ const Register = () => {
     const url = form.url.value;
     const email = form.email.value;
     const password = form.password.value;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (password.length < 6) {
+      toast("Password Must Contain 6 Character!", { icon: <IoWarning /> });
+      return;
+    } else if (!passwordRegex.test(password)) {
+      toast(
+        "Password must be contain 1 uppercase, 1 lowercase, 1 number, and 1 special character",
+        { icon: <IoWarning />, duration: 3000 }
+      );
+      return;
+    }
 
     // console.table({username, url, email, password})
     try {
@@ -29,7 +43,7 @@ const Register = () => {
         displayName: username,
       });
       toast.success("Signup Successful, Now login");
-      navigate("/signup");
+      navigate("/login");
     } catch (error) {
       toast.error(error?.message);
     }
