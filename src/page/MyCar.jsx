@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { format } from 'date-fns';
+import toast from 'react-hot-toast';
 
 const MyCar = () => {
   const [authorPost, setAuthorPost] = useState([]);
@@ -41,6 +42,51 @@ const MyCar = () => {
       default:
         return sortedPosts;
     }
+  };
+
+  // handle delete function
+  const handlePostData = async (id) => {
+    try {
+      const { data } = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/single-car/${id}`
+      );
+      console.log(data);
+      fetchAllCarByAuthorEmail();
+      toast.success('Data deleted successfully');
+    } catch (error) {
+      toast.error(error?.message);
+    }
+  };
+
+  
+
+  // delete popup confirm function
+  const confirmDelete = (id) => {
+    toast((t) => (
+      <div className='flex gap-3 items-center'>
+        <div>
+          <p className='font-bold text-zinc-700'>Are you sure?</p>
+        </div>
+
+        <div className='flex gap-2'>
+          <button
+            className='px-3 py-1 rounded-md bg-red-400 text-white hover:bg-red-500 transition-colors'
+            onClick={() => {
+              toast.dismiss(t.id);
+              handlePostData(id);
+            }}
+          >
+            Yes
+          </button>
+          <button
+            className='px-3 py-1 rounded-md bg-green-400 text-white hover:bg-green-500 transition-colors'
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancle
+          </button>
+        </div>
+      </div>
+    ));
   };
 
   return (
@@ -197,11 +243,14 @@ const MyCar = () => {
                       <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
                         {format(new Date(post?.post_date), 'P')}
                       </td>
-                      {/* Table Data 6 */}
+                      {/* Table Data 7 operation */}
                       <td className='px-4 py-4 text-sm whitespace-nowrap'>
                         <div className='flex items-center gap-x-6'>
                           {/* Delete Button */}
-                          <button className='text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none cursor-pointer'>
+                          <button
+                            onClick={() => confirmDelete(post?._id)}
+                            className='text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none cursor-pointer'
+                          >
                             {/* icon bin */}
                             <svg
                               xmlns='http://www.w3.org/2000/svg'

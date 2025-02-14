@@ -19,7 +19,7 @@ const AllCars = () => {
 
   return (
     <div>
-      <div>
+      <div className='grid lg:grid-cols-3 lg:gap-2'>
         {cars?.map((car)=>(
             <CarsCard key={car?._id} car={car} />
         ))}

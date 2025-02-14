@@ -15,7 +15,7 @@ const Home = () => {
   }, [])
   
   return (
-    <div className='container mx-auto mt-2'>
+    <div className='container mx-auto mt-2 overflow-hidden'>
       {/* Heading */}
       <h2 className='font-semibold text-4xl text-zinc-700 py-2 text-center italic'>
         Drive Your Dreams{" "}
@@ -53,14 +53,14 @@ const Home = () => {
             <FcAdvertising />
           </span>
         </h2>
-        <div data-aos="fade-up" className='grid lg:grid-cols-3'>
+        <div data-aos="fade-up" className=''>
           <AllCars/>
         </div>
       </div>
 
       
       {/* Testimonial Custormer review */}
-      <div data-aos='fade-up' className='my-16'>
+      <div data-aos="fade-right" className='my-16'>
         <h2
           className='
         mb-4 text-4xl font-semibold text-center italic text-zinc-800 flex items-center justify-center gap-3
