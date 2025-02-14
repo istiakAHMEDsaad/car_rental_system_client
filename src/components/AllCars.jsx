@@ -19,7 +19,6 @@ const AllCars = () => {
 
   return (
     <div>
-      <h2>allcar</h2>
       <div>
         {cars?.map((car)=>(
             <CarsCard key={car?._id} car={car} />
