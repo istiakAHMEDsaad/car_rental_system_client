@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const SpecialOffer = () => {
   useEffect(() => {
-      Aos.init({duration: 1500});
+      Aos.init();
     }, []);
 
   return (

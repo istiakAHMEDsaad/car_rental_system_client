@@ -1,48 +1,45 @@
-import Rating from "react-rating";
-import { FaRegStar, FaStar } from "react-icons/fa";
+import Rating from 'react-rating';
+import { FaRegStar, FaStar } from 'react-icons/fa';
 
-import avaOne from "../assets/ai_1.webp";
-import avaTwo from "../assets/ai_2.avif";
-import avaThree from "../assets/ai_3.webp";
-import avaFour from "../assets/ai_4.jpg";
+import avaOne from '../assets/ai_1.webp';
+import avaTwo from '../assets/ai_2.avif';
+import avaThree from '../assets/ai_3.webp';
+import avaFour from '../assets/ai_4.jpg';
 
-import Aos from "aos";
-import { useEffect } from "react";
 
 const testimonials = [
   {
-    name: "John Doe",
+    name: 'John Doe',
     avatar: avaOne,
     rating: 5,
-    description: "Great service! Highly recommend.",
+    description: 'Great service! Highly recommend.',
   },
   {
-    name: "Jane Smith",
+    name: 'Jane Smith',
     avatar: avaTwo,
     rating: 4,
-    description: "Very satisfied with the car rental experience.",
+    description: 'Very satisfied with the car rental experience.',
   },
   {
-    name: "Alice Johnson",
+    name: 'Alice Johnson',
     avatar: avaThree,
     rating: 5,
-    description: "Excellent customer support and quality cars.",
+    description: 'Excellent customer support and quality cars.',
   },
   {
-    name: "James Calo",
+    name: 'James Calo',
     avatar: avaFour,
     rating: 4,
-    description: "Very satisfied with the car rental experience.",
+    description: 'Very satisfied with the car rental experience.',
   },
 ];
 
 const Testimonials = () => {
-  useEffect(() => {
-        Aos.init({duration: 1500});
-      }, []);
-  
   return (
-    <div data-aos="fade-up" className='container mx-auto px-2 flex flex-col md:grid md:grid-cols-2 md:gap-2'>
+    <div
+      
+      className='container mx-auto px-2 flex flex-col md:grid md:grid-cols-2 md:gap-2'
+    >
       {testimonials.map((item, index) => (
         <div
           key={index}
@@ -64,15 +61,15 @@ const Testimonials = () => {
                 readonly
                 fractions={2}
                 emptySymbol={
-                    <span className='text-xl text-yellow-400'>
-                      <FaRegStar></FaRegStar>
-                    </span>
-                  }
-                  fullSymbol={
-                    <span className='text-xl text-yellow-400'>
-                      <FaStar></FaStar>
-                    </span>
-                  }
+                  <span className='text-xl text-yellow-400'>
+                    <FaRegStar></FaRegStar>
+                  </span>
+                }
+                fullSymbol={
+                  <span className='text-xl text-yellow-400'>
+                    <FaStar></FaStar>
+                  </span>
+                }
               />
             </p>
             <div className='card-actions justify-end'>

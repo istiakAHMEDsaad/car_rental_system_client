@@ -5,9 +5,15 @@ import SpecialOffer from "../components/SpecialOffer";
 import Testimonials from "../components/Testimonials";
 import { FcAdvertising, FcCustomerSupport } from "react-icons/fc";
 import AllCars from "../components/AllCars";
+import Aos from "aos";
+import { useEffect } from "react";
 
 
 const Home = () => {
+  useEffect(()=>{
+    Aos.init()
+  }, [])
+  
   return (
     <div className='container mx-auto mt-2'>
       {/* Heading */}
@@ -26,10 +32,13 @@ const Home = () => {
         </span>
       </h2>
 
+      {/* Carousel */}
       <Carousel />
 
+      {/* Icon section */}
       <WhyChooseUs />
 
+      {/* 6/8 card from db section */}
       <div>
         {/* animate__animated animate__flash animate__slower animate__infinite infinite */}
         <h2
@@ -44,13 +53,14 @@ const Home = () => {
             <FcAdvertising />
           </span>
         </h2>
-        <div className='grid lg:grid-cols-3'>
+        <div data-aos="fade-up" className='grid lg:grid-cols-3'>
           <AllCars/>
         </div>
       </div>
 
-      {/* animate__animated animate__pulse animate__slower animate__infinite infinite */}
-      <div className='my-16'>
+      
+      {/* Testimonial Custormer review */}
+      <div data-aos='fade-up' className='my-16'>
         <h2
           className='
         mb-4 text-4xl font-semibold text-center italic text-zinc-800 flex items-center justify-center gap-3
@@ -64,9 +74,11 @@ const Home = () => {
         <Testimonials />
       </div>
 
+      {/* Special Offer */}
       <SpecialOffer />
     </div>
   );
 };
 
 export default Home;
+{/* animate__animated animate__pulse animate__slower animate__infinite infinite */}
