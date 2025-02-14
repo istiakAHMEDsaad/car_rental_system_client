@@ -1,11 +1,17 @@
-import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { useContext, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { AuthContext } from '../provider/AuthProvider';
+import toast from 'react-hot-toast';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddCar = () => {
+  const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState(new Date());
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
     const model = form.car_model.value;
@@ -15,7 +21,7 @@ const AddCar = () => {
     const features = form.features.value;
     const image = form.car_image.value;
     const location = form.location.value;
-    const date = startDate;
+    const post_date = startDate;
     const description = form.description.value;
 
     const infoRes = {
@@ -26,11 +32,24 @@ const AddCar = () => {
       features,
       image,
       location,
-      date,
-      description
+      post_date,
+      description,
+      author: {
+        author_email: user?.email,
+        author_name: user?.displayName,
+        author_photo: user?.photoURL,
+      },
+      book_count: 0,
     };
-    
-    console.table(infoRes)
+
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/add-car`, infoRes);
+      form.reset();
+      toast.success('Data added successfully!!!');
+      navigate('/my-car');
+    } catch (error) {
+      toast.error(error?.message);
+    }
   };
 
   return (

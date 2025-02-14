@@ -3,8 +3,9 @@ import Carousel from "../components/Carousel";
 import WhyChooseUs from "../components/WhyChooseUs";
 import SpecialOffer from "../components/SpecialOffer";
 import Testimonials from "../components/Testimonials";
-import TempCard from "../components/TempCard";
 import { FcAdvertising, FcCustomerSupport } from "react-icons/fc";
+import AllCars from "../components/AllCars";
+
 
 const Home = () => {
   return (
@@ -44,9 +45,7 @@ const Home = () => {
           </span>
         </h2>
         <div className='grid lg:grid-cols-3'>
-          <TempCard />
-          <TempCard />
-          <TempCard />
+          <AllCars/>
         </div>
       </div>
 

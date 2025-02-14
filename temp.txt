@@ -1,0 +1,24 @@
+<div className='flex items-center justify-between'>
+          {/* h-16 w-16 rounded-full flex items-center justify-center */}
+          <div className='my-2 flex lg:flex-row flex-col items-center justify-between gap-2'>
+            <div className='flex-1'>
+              <img
+                className='rounded-full w-20'
+                src={car?.author?.author_photo}
+                alt='author photo'
+              />
+            </div>
+            <div className='flex-2 text-sm text-gray-500'>
+              <h2 className='text-gray-500 text-sm italic font-semibold underline'>
+                Author
+              </h2>
+              <p className='text-gray-500 text-sm italic'>
+                Name: {car?.author?.author_name}
+              </p>
+              <p className='text-gray-500 text-sm italic'>
+                Emai: {car?.author?.author_email.substring(0, 8)}....
+              </p>
+            </div>
+            <button className='btn btn-primary'>Book Now</button>
+          </div>
+        </div>
