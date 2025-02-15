@@ -1,31 +1,40 @@
-import { createBrowserRouter } from "react-router-dom";
-import HomeLaylout from "../layouts/HomeLaylout";
-import ErrorPage from "./error-page";
-import AvailableCar from "../page/AvailableCar";
-import Login from "../page/authentication/Login";
-import Register from "../page/authentication/Register";
-import PrivateRoutes from "./PrivateRoutes";
-import AddCar from "../page/AddCar";
-import MyCar from "../page/MyCar";
-import MyBookings from "../page/MyBookings";
-import Home from "../page/Home";
+import { createBrowserRouter } from 'react-router-dom';
+import HomeLaylout from '../layouts/HomeLaylout';
+import ErrorPage from './error-page';
+import AvailableCar from '../page/AvailableCar';
+import Login from '../page/authentication/Login';
+import Register from '../page/authentication/Register';
+import PrivateRoutes from './PrivateRoutes';
+import AddCar from '../page/AddCar';
+import MyCar from '../page/MyCar';
+import MyBookings from '../page/MyBookings';
+import Home from '../page/Home';
+import AvailAbleCarDetails from '../page/AvailAbleCarDetails';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <HomeLaylout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        index: "/",
-        element: <Home/>
+        index: '/',
+        element: <Home />,
       },
       {
-        path: "/available-car",
+        path: '/available-car',
         element: <AvailableCar />,
       },
       {
-        path: "/add-car",
+        path: '/available-car/:id',
+        element: (
+          <PrivateRoutes>
+            <AvailAbleCarDetails />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: '/add-car',
         element: (
           <PrivateRoutes>
             <AddCar />
@@ -33,7 +42,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/my-car",
+        path: '/my-car',
         element: (
           <PrivateRoutes>
             <MyCar />
@@ -41,7 +50,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/my-bookings",
+        path: '/my-bookings',
         element: (
           <PrivateRoutes>
             <MyBookings />
@@ -51,11 +60,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
   },
   {
-    path: "/signup",
+    path: '/signup',
     element: <Register />,
   },
 ]);

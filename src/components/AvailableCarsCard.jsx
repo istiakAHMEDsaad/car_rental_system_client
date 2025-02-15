@@ -10,16 +10,17 @@ import {
   FaBookmark,
 } from 'react-icons/fa6';
 import { FcCheckmark, FcCancel } from 'react-icons/fc';
+import { Link } from 'react-router-dom';
 
 const AvailableCarsCard = ({ car, toggle }) => {
-  const { image, model, price, available, book_count, post_date } = car || {};
+  const { image, model, price, available, book_count, post_date, _id } = car || {};
   return (
     // card bg-base-100 w-80 shadow-sm
     <div
       className={`${
         toggle === true
-          ? 'card bg-base-100 shadow-md my-10 p-3 border border-gray-300 gap-y-2 justify-between'
-          : 'md:flex md:h-64 mb-4 border border-gray-200 rounded-md shadow-md items-center justify-center md:pl-2'
+          ? 'card bg-base-100 shadow-md p-3 border border-gray-300 gap-y-2 justify-between'
+          : 'md:flex md:h-64 mb-4 border border-gray-200 rounded-md shadow-md items-center justify-center'
       }`}
     >
       <figure>
@@ -102,7 +103,7 @@ const AvailableCarsCard = ({ car, toggle }) => {
             </p>
           </div>
           <div>
-            <button className='btn btn-primary'>Book Now</button>
+            <Link to={`/available-car/${_id}`} className='btn btn-primary'>Book Now</Link>
           </div>
         </div>
       </div>

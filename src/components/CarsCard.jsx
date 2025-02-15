@@ -10,9 +10,10 @@ import {
   FaBookmark,
 } from 'react-icons/fa6';
 import { FcCheckmark, FcCancel } from 'react-icons/fc';
+import { Link } from 'react-router-dom';
 
 const CarsCard = ({ car }) => {
-  const { image, model, price, available, book_count, post_date } = car || {};
+  const { image, model, price, available, book_count, post_date, _id } = car || {};
   return (
     <div className='card bg-base-100 shadow-md my-10 p-3 border border-gray-300 gap-y-2 justify-between'>
       <figure>
@@ -91,13 +92,9 @@ const CarsCard = ({ car }) => {
             </p>
           </div>
           <div>
-            <button className='btn btn-primary'>Book Now</button>
+            <Link to={`/available-car/${_id}`} className='btn btn-primary'>Book Now</Link>
           </div>
         </div>
-
-        {/* <div className='card-actions justify-end'>
-          <button className='btn btn-primary'>Buy Now</button>
-        </div> */}
       </div>
     </div>
   );
