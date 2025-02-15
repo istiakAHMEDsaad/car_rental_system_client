@@ -56,6 +56,7 @@ const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
         author_name: user?.displayName,
         author_photo: user?.photoURL,
       },
+      book_count: carId?.book_count,
     };
 
     try {
@@ -66,8 +67,8 @@ const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
       if (response.status === 200) {
         form.reset();
         toast.success('Data Updated Successfully!!!');
-        setIsModalOpen(false); // Close the modal
-        fetchAllCarByAuthorEmail(); // Update the state with the new data
+        setIsModalOpen(false);
+        fetchAllCarByAuthorEmail();
       } else {
         toast.error('Failed to update data. Please try again.');
       }
@@ -251,7 +252,7 @@ const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
 
 EditButton.propTypes = {
   postId: PropTypes.number.isRequired,
-  fetchAllCarByAuthorEmail: PropTypes.func.isRequired
+  fetchAllCarByAuthorEmail: PropTypes.func.isRequired,
 };
 
 export default EditButton;

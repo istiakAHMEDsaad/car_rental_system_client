@@ -67,3 +67,9 @@ siddiqur_rahman@yahoo.com
 Siddiq@1234
 https://cdn.kwork.com/files/portfolio/t3/24/a5bf8465becd2274bd38894122c7020e96115673-1711803733.jpg
 */
+
+/*
+turag_ahmed@gmail.com
+Turag@1234
+https://cdn.prod.website-files.com/6600e1eab90de089c2d9c9cd/669726e7b6388b54f9aa2769_66553f0390479b8e5a3fc524_image_CMEex1C1_1716770910814_raw.jpeg
+*/

@@ -1,13 +1,18 @@
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 
 // icons
 import { IoLogoModelS } from 'react-icons/io';
-import { FaGear, FaCalendarDays } from 'react-icons/fa6';
-import { CiPaperplane } from 'react-icons/ci';
+import {
+  FaHouse,
+  FaCalendarDays,
+  FaDollarSign,
+  FaBookmark,
+} from 'react-icons/fa6';
+import { FcCheckmark, FcCancel } from 'react-icons/fc';
 
 const CarsCard = ({ car }) => {
-  const { model, image, features, post_date, description } = car || {};
+  const { image, model, price, available, book_count, post_date } = car || {};
   return (
     <div className='card bg-base-100 shadow-md my-10 p-3 border border-gray-300 gap-y-2 justify-between'>
       <figure>
@@ -19,7 +24,7 @@ const CarsCard = ({ car }) => {
       </figure>
 
       <div className=''>
-        {/* Title */}
+        {/* Model */}
         <h2 className='card-title'>
           <span>
             <IoLogoModelS />
@@ -27,30 +32,53 @@ const CarsCard = ({ car }) => {
           <span>{model}</span>
         </h2>
 
-        {/* Features */}
-        <p className='flex items-center gap-3 text-base text-gray-600'>
+        {/* Price */}
+        <p className='flex items-center gap-2 text-base text-gray-600 italic'>
           <span>
-            <FaGear />
-          </span>{' '}
-          <span>{features}</span>
+            <FaDollarSign />
+          </span>
+          <span>Price:</span>
+          <span>{price}</span>
+        </p>
+
+        {/* Available */}
+        <p className='flex items-center gap-2 text-base text-gray-600 italic'>
+          <span>
+            <FaHouse />
+          </span>
+          <span>Available:</span>
+          {available === 'yes' ? (
+            <span className='px-2 rounded-full bg-green-200/60'>
+              <FcCheckmark size={20} />
+            </span>
+          ) : (
+            <span className='px-2 rounded-full bg-red-200/60'>
+              <FcCancel size={20} />
+            </span>
+          )}
+        </p>
+
+        {/* Total Booking */}
+        <p className='flex items-center gap-2 text-base text-gray-600 italic'>
+          <span>
+            <FaBookmark />
+          </span>
+          <span>Totally book:</span>
+          <span>{book_count}</span>
         </p>
 
         {/* Post Date */}
-        <p className='flex items-center gap-3 text-base text-gray-600'>
+        <p className='flex items-center gap-2 text-base text-gray-600 italic'>
           <span>
             <FaCalendarDays />
-          </span>{' '}
-          <span>{format(new Date(post_date), 'P')}</span>
-        </p>
-
-        {/* Description */}
-        <p className='flex items-center gap-3 text-base text-gray-600'>
+          </span>
+          <span>Post:</span>
           <span>
-            <CiPaperplane />
-          </span>{' '}
-          <span>{description}</span>
+            {formatDistanceToNow(new Date(post_date), { addSuffix: true })}
+          </span>
         </p>
 
+        {/* Book Now */}
         <div className='mt-2 flex items-center justify-between'>
           <div className=''>
             <img
@@ -58,10 +86,12 @@ const CarsCard = ({ car }) => {
               src={car?.author?.author_photo}
               alt='avatar'
             />
-            <p className='text-[10px] md:text-sm'>Author: {car?.author?.author_name}</p>
+            <p className='text-[10px] md:text-sm'>
+              Author: {car?.author?.author_name}
+            </p>
           </div>
           <div>
-          <button className='btn btn-primary'>Buy Now</button>
+            <button className='btn btn-primary'>Book Now</button>
           </div>
         </div>
 
