@@ -4,8 +4,9 @@ import { FiX } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { AuthContext } from '../provider/AuthProvider';
+import toast from 'react-hot-toast';
 
-const EditButton = ({ postId }) => {
+const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [carId, setCarId] = useState({});
   const { user } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const EditButton = ({ postId }) => {
     setCarId(data);
   };
 
-  const handleEditSubmit = (event) => {
+  const handleEditSubmit = async (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -56,6 +57,23 @@ const EditButton = ({ postId }) => {
         author_photo: user?.photoURL,
       },
     };
+
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_URL}/update-car/${postId}`,
+        editInfo
+      );
+      if (response.status === 200) {
+        form.reset();
+        toast.success('Data Updated Successfully!!!');
+        setIsModalOpen(false); // Close the modal
+        fetchAllCarByAuthorEmail(); // Update the state with the new data
+      } else {
+        toast.error('Failed to update data. Please try again.');
+      }
+    } catch (error) {
+      toast.error(error?.message);
+    }
   };
 
   return (
@@ -106,6 +124,7 @@ const EditButton = ({ postId }) => {
                   id='car_model'
                   name='car_model'
                   type='text'
+                  defaultValue={carId?.model}
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
               </div>
@@ -119,6 +138,7 @@ const EditButton = ({ postId }) => {
                   id='daily_rental_price'
                   type='number'
                   name='daily_rental_price'
+                  defaultValue={carId?.price}
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
               </div>
@@ -131,6 +151,7 @@ const EditButton = ({ postId }) => {
                 <select
                   name='availability'
                   id='availability'
+                  defaultValue={carId?.available}
                   className='px-2 py-[0.6rem] rounded-md text-gray-700 border bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 >
                   <option value='yes'>Yes</option>
@@ -146,6 +167,7 @@ const EditButton = ({ postId }) => {
                 <input
                   id='registration_num'
                   name='registration_num'
+                  defaultValue={carId?.reg_num}
                   type='text'
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
@@ -160,6 +182,7 @@ const EditButton = ({ postId }) => {
                   id='features'
                   name='features'
                   type='text'
+                  defaultValue={carId?.features}
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
               </div>
@@ -173,6 +196,7 @@ const EditButton = ({ postId }) => {
                   id='car_image'
                   name='car_image'
                   type='url'
+                  defaultValue={carId?.image}
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
               </div>
@@ -186,11 +210,10 @@ const EditButton = ({ postId }) => {
                   id='location'
                   name='location'
                   type='text'
+                  defaultValue={carId?.location}
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
               </div>
-
-              {/* Date */}
             </div>
 
             {/* Description */}
@@ -201,6 +224,7 @@ const EditButton = ({ postId }) => {
               <textarea
                 name='description'
                 id='description'
+                defaultValue={carId?.description}
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               ></textarea>
             </div>
@@ -227,6 +251,7 @@ const EditButton = ({ postId }) => {
 
 EditButton.propTypes = {
   postId: PropTypes.number.isRequired,
+  fetchAllCarByAuthorEmail: PropTypes.func.isRequired
 };
 
 export default EditButton;

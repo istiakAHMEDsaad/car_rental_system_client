@@ -269,7 +269,7 @@ const MyCar = () => {
                           </button>
 
                           {/* Edit Button */}
-                          <EditButton postId={post?._id} />
+                          <EditButton postId={post?._id} fetchAllCarByAuthorEmail={fetchAllCarByAuthorEmail} />
                           {/* <button
                           onClick={()=>getId(post?._id)}
                             className='text-gray-500 transition-colors duration-200 hover:text-yellow-500 focus:outline-none cursor-pointer'
