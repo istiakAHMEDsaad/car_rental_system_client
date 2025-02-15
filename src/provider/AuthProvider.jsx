@@ -86,7 +86,7 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-AuthProvider.propTypes = {
+  AuthProvider.propTypes = {
   children: PropTypes.object.isRequired,
 };
 
