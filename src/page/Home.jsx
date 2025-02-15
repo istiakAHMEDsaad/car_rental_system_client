@@ -7,6 +7,7 @@ import { FcAdvertising, FcCustomerSupport } from "react-icons/fc";
 import AllCars from "../components/AllCars";
 import Aos from "aos";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
@@ -56,6 +57,9 @@ const Home = () => {
         <div data-aos="fade-up" className=''>
           <AllCars/>
         </div>
+        <div className="flex items-center justify-center">
+          <Link className="btn btn-accent" to={"/available-car"}>Show more...</Link>
+        </div>
       </div>
 
       
@@ -64,6 +68,7 @@ const Home = () => {
         <h2
           className='
         mb-4 text-4xl font-semibold text-center italic text-zinc-800 flex items-center justify-center gap-3
+        animate__animated animate__pulse animate__slower animate__infinite infinite
         '
         >
           <span>What Our Customer Says</span>

@@ -117,7 +117,7 @@ const MyCar = () => {
       {authorPost?.length === 0 ? (
         <div className='mt-10 flex flex-col items-center justify-center'>
           <h2 className='text-center font-semibold text-2xl text-zinc-700'>
-            Currently There is No Car Available in Database <br />
+            Look&apos;s like, You didn&apos;t post anything<br />
             <span className='italic font-bold text-rose-400'>
               Please Add Some
             </span>
