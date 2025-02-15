@@ -8,7 +8,7 @@ const AllCars = () => {
   useEffect(() => {
     const fetchAllCar = async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/all-car`
+        `${import.meta.env.VITE_API_URL}/limited-car?limit=6`
       );
       setAllCars(data);
     };
