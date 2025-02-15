@@ -17,7 +17,7 @@ const CarsCard = ({ car }) => {
     <div className='card bg-base-100 shadow-md my-10 p-3 border border-gray-300 gap-y-2 justify-between'>
       <figure>
         <img
-          className='lg:w-[28rem] md:w-full w-80 h-full object-cover rounded-md'
+          className='lg:w-[28rem] md:w-full w-80 h-64 object-cover rounded-md'
           src={image}
           alt='car image'
         />

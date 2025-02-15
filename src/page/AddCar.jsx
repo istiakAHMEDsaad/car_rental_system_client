@@ -73,6 +73,7 @@ const AddCar = () => {
                 id='car_model'
                 name='car_model'
                 type='text'
+                required
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               />
             </div>
@@ -86,6 +87,7 @@ const AddCar = () => {
                 id='daily_rental_price'
                 type='number'
                 name='daily_rental_price'
+                required
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               />
             </div>
@@ -98,6 +100,7 @@ const AddCar = () => {
               <select
                 name='availability'
                 id='availability'
+                required
                 className='px-2 py-[0.6rem] rounded-md text-gray-700 border bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               >
                 <option value='yes'>Yes</option>
@@ -114,6 +117,7 @@ const AddCar = () => {
                 id='registration_num'
                 name='registration_num'
                 type='text'
+                required
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               />
             </div>
@@ -127,6 +131,7 @@ const AddCar = () => {
                 id='features'
                 name='features'
                 type='text'
+                required
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               />
             </div>
@@ -140,6 +145,7 @@ const AddCar = () => {
                 id='car_image'
                 name='car_image'
                 type='url'
+                required
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               />
             </div>
@@ -153,6 +159,7 @@ const AddCar = () => {
                 id='location'
                 name='location'
                 type='text'
+                required
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               />
             </div>
@@ -166,6 +173,7 @@ const AddCar = () => {
                 className='px-2 py-[0.6rem] rounded-md text-gray-700 border bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
+                required
               />
             </div>
           </div>
@@ -178,6 +186,7 @@ const AddCar = () => {
             <textarea
               name='description'
               id='description'
+              required
               className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
             ></textarea>
           </div>

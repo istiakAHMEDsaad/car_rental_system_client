@@ -1,4 +1,20 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import AvailableCarsCard from '../components/AvailableCarsCard';
+
 const AvailableCar = () => {
+  const [carsData, setCarsData] = useState([]);
+
+  useEffect(() => {
+    const fetchAllCarsData = async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/all-car`
+      );
+      setCarsData(data);
+    };
+    fetchAllCarsData();
+  }, []);
+
   return (
     <div className='container mx-auto mt-5 overflow-hidden'>
       {/* Title */}
@@ -34,9 +50,13 @@ const AvailableCar = () => {
           </div>
         </div>
 
-        {/* Card Section */}
+        {/* Card container */}
         <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, unde?
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            {carsData?.map((car) => (
+              <AvailableCarsCard key={car?._id} car={car} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

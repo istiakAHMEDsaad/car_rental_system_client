@@ -125,6 +125,7 @@ const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
                   id='car_model'
                   name='car_model'
                   type='text'
+                  required
                   defaultValue={carId?.model}
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
@@ -139,6 +140,7 @@ const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
                   id='daily_rental_price'
                   type='number'
                   name='daily_rental_price'
+                  required
                   defaultValue={carId?.price}
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
@@ -152,6 +154,7 @@ const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
                 <select
                   name='availability'
                   id='availability'
+                  required
                   defaultValue={carId?.available}
                   className='px-2 py-[0.6rem] rounded-md text-gray-700 border bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 >
@@ -170,6 +173,7 @@ const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
                   name='registration_num'
                   defaultValue={carId?.reg_num}
                   type='text'
+                  required
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
               </div>
@@ -183,6 +187,7 @@ const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
                   id='features'
                   name='features'
                   type='text'
+                  required
                   defaultValue={carId?.features}
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
@@ -197,6 +202,7 @@ const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
                   id='car_image'
                   name='car_image'
                   type='url'
+                  required
                   defaultValue={carId?.image}
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
@@ -211,6 +217,7 @@ const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
                   id='location'
                   name='location'
                   type='text'
+                  required
                   defaultValue={carId?.location}
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
@@ -225,6 +232,7 @@ const EditButton = ({ postId, fetchAllCarByAuthorEmail }) => {
               <textarea
                 name='description'
                 id='description'
+                required
                 defaultValue={carId?.description}
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               ></textarea>
