@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
+import DatePicker from 'react-datepicker';
 import { useState } from 'react';
 
 //icons
@@ -20,6 +21,7 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [forDeleteModal, setForDeleteModal] = useState(false);
   const [forDateModal, setForDateeModal] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -34,14 +36,29 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
   };
 
   // patch
-  const handleStatusChange = async (id, preStatus, status) => {
+  const handleStatusChange = async (id, _, status) => {
     try {
-      
-        await axios.patch(
-        `${import.meta.env.VITE_API_URL}/booking-status-update/${id}`,{ bookingStatus: status })
-
+      await axios.patch(
+        `${import.meta.env.VITE_API_URL}/booking-status-update/${id}`,
+        { bookingStatus: status }
+      );
       toast.success('Canceled successfully');
+      setIsModalOpen(false);
       fetchBookingData(); //all fetch data prop drilling through another page
+    } catch (error) {
+      toast.error(error?.message);
+    }
+  };
+
+  const handleUpdateDate = async (id, updatedDate) => {
+    try {
+      await axios.patch(
+        `${import.meta.env.VITE_API_URL}/bookingdate-update/${id}`,
+        { bookingDate: updatedDate }
+      );
+      toast.success('Update date successfully');
+      setForDateeModal(false);
+      fetchBookingData();
     } catch (error) {
       toast.error(error?.message);
     }
@@ -97,7 +114,10 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
             <FcEmptyTrash size={26} />
           </button>
 
-          <button className='px-1 py-[2px] rounded-md bg-cyan-100 cursor-pointer transition-colors hover:bg-cyan-200'>
+          <button
+            onClick={dateModalOpen}
+            className='px-1 py-[2px] rounded-md bg-cyan-100 cursor-pointer transition-colors hover:bg-cyan-200'
+          >
             <FcCalendar size={26} />
           </button>
         </div>
@@ -151,6 +171,40 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
                 Close
               </button>
               <button className='btn btn-primary'>Delete Now</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {forDateModal && (
+        <div className='modal modal-open'>
+          <div className='border border-gray-300 shadow-md w-80 md:w-96 h-[28rem] rounded-md bg-white relative flex flex-col items-center'>
+            {/* Close Button */}
+            <button
+              className='btn btn-sm btn-circle absolute right-2 top-2'
+              onClick={() => setForDateeModal(false)}
+            >
+              ✕
+            </button>
+
+            <h3 className='font-bold text-lg mt-8 mb-4'>Please Choose Date</h3>
+            <div className='mb-60'>
+              <DatePicker
+                className='px-2 py-[0.6rem] rounded-md text-gray-700 border bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+              />
+            </div>
+            <div className='modal-action'>
+              <button className='btn' onClick={() => setForDateeModal(false)}>
+                Close
+              </button>
+              <button
+                onClick={() => handleUpdateDate(_id, startDate)}
+                className='btn btn-primary'
+              >
+                Submit
+              </button>
             </div>
           </div>
         </div>
