@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import toast from 'react-hot-toast';
 import DatePicker from 'react-datepicker';
@@ -15,7 +15,7 @@ import {
   IoIosCog,
   IoIosDocument,
 } from 'react-icons/io';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 
 const AvailAbleCarDetails = () => {
   const { id } = useParams(); //(useParams, useLoaderData)
@@ -23,6 +23,7 @@ const AvailAbleCarDetails = () => {
   const { user } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchSingleData();
@@ -49,7 +50,7 @@ const AvailAbleCarDetails = () => {
   // const todaysDate = format(new Date(), 'P');
   const withVat = price + price * 0.05;
 
-  const handleConfirmBooking = () => {
+  const handleConfirmBooking = async () => {
     if (bookingUserMail === authorEmail) {
       return toast.error("You can't book your own posted car!!!");
     }
@@ -59,14 +60,24 @@ const AvailAbleCarDetails = () => {
       bookingModel: model,
       bookingDate: startDate,
       bookingVatPrice: withVat,
-      bookingStatus: 'Pending',
-      bookingMail: user?.email,
-      bookId: _id
+      bookingStatus: 'Booked',
+      bookingMail: bookingUserMail,
+      authorEmai: authorEmail,
+      bookId: _id,
     };
-    console.table(bookingInformation)
+    console.table(bookingInformation);
 
-    toast.success('Booking Confirm');
-    setIsModalOpen(false);
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/add-carBook`,
+        bookingInformation
+      );
+      toast.success('Booking request send');
+      setIsModalOpen(false);
+      navigate('/my-bookings');
+    } catch (error) {
+      toast.error(error?.response?.data);
+    }
   };
 
   return (
