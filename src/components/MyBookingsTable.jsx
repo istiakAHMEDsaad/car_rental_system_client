@@ -35,7 +35,7 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
     setForDateeModal(true);
   };
 
-  // patch
+  //update status
   const handleStatusChange = async (id, _, status) => {
     try {
       await axios.patch(
@@ -50,6 +50,7 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
     }
   };
 
+  //update date
   const handleUpdateDate = async (id, updatedDate) => {
     try {
       await axios.patch(
@@ -58,6 +59,20 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
       );
       toast.success('Update date successfully');
       setForDateeModal(false);
+      fetchBookingData();
+    } catch (error) {
+      toast.error(error?.message);
+    }
+  };
+
+  //delete booking
+  const handleDeleteBookings = async (id) => {
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/delete-booking/${id}`
+      );
+      toast.success('Booking history deleted');
+      setForDeleteModal(false);
       fetchBookingData();
     } catch (error) {
       toast.error(error?.message);
@@ -98,6 +113,7 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
         {bookingStatus}
       </td>
 
+      {/* operation */}
       <td className='py-2 text-sm text-gray-500  whitespace-nowrap'>
         <div className='flex items-center gap-4'>
           <button
@@ -122,7 +138,7 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
           </button>
         </div>
       </td>
-      {/* Modal Section */}
+      {/* cancel modal */}
       {isModalOpen && (
         <div className='modal modal-open'>
           <div className='modal-box relative'>
@@ -152,7 +168,7 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
           </div>
         </div>
       )}
-
+      {/* delete modal */}
       {forDeleteModal && (
         <div className='modal modal-open'>
           <div className='modal-box relative'>
@@ -170,12 +186,17 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
               <button className='btn' onClick={() => setForDeleteModal(false)}>
                 Close
               </button>
-              <button className='btn btn-primary'>Delete Now</button>
+              <button
+                onClick={() => handleDeleteBookings(_id)}
+                className='btn btn-primary'
+              >
+                Delete Now
+              </button>
             </div>
           </div>
         </div>
       )}
-
+      {/* update date modal */}
       {forDateModal && (
         <div className='modal modal-open'>
           <div className='border border-gray-300 shadow-md w-80 md:w-96 h-[28rem] rounded-md bg-white relative flex flex-col items-center'>
