@@ -22,6 +22,7 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
   const [forDeleteModal, setForDeleteModal] = useState(false);
   const [forDateModal, setForDateeModal] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
+  
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -79,6 +80,7 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
     }
   };
 
+
   return (
     <tr className='hover:bg-gray-100 transition-colors'>
       {/* car image */}
@@ -118,7 +120,11 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
         <div className='flex items-center gap-4'>
           <button
             onClick={handleOpenModal}
-            className='px-1 py-[2px] rounded-md bg-red-100 cursor-pointer transition-colors hover:bg-red-200'
+            className={`${
+              bookingStatus === 'Booked'
+                ? 'px-1 py-[2px] rounded-md bg-red-100 cursor-pointer transition-colors hover:bg-red-200'
+                : 'px-1 py-[2px] rounded-md bg-red-100 cursor-not-allowed'
+            }`}
           >
             <FcCancel size={26} />
           </button>
@@ -157,10 +163,13 @@ const MyBookingsTable = ({ bookingData, fetchBookingData }) => {
                 Close
               </button>
               <button
-                onClick={() =>
-                  handleStatusChange(_id, bookingStatus, 'Canceled')
-                }
+                onClick={() => {
+                  if (bookingStatus !== 'Canceled') {
+                    handleStatusChange(_id, bookingStatus, 'Canceled');
+                  }
+                }}
                 className='btn btn-primary'
+                disabled={bookingStatus === 'Canceled'}
               >
                 Cancel Now
               </button>
