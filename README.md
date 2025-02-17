@@ -10,10 +10,19 @@ A modern and user-friendly **Car Rental System** that allows users to manage car
 
 ## ✨ Features
 
-✅ **Car Management:** Users can add, update, and delete car listings.  
-✅ **Search & Booking:** Search for cars based on availability and make reservations.  
-✅ **Real-Time Updates:** View live availability status of listed cars.  
-✅ **Responsive UI:** Fully optimized for all screen sizes.  
+- **Vehicle Management**
+  - Add new cars to rental fleet
+  - Update vehicle details and specifications
+  - Remove vehicles from active inventory
+- **Smart Search & Booking**
+  - Real-time availability checking
+  - Advanced search filters (price range, posted date)
+  - Instant booking confirmation
+- **Dashboard Analytics**
+  - Booking status
+  - Customer reservation history
+- **User Authentication**
+  - Secure login/logout functionality
 
 ---
 
@@ -26,9 +35,9 @@ A modern and user-friendly **Car Rental System** that allows users to manage car
 - **Framer Motion & AOS** – Animations
 - **Swiper.js** – Carousels & sliders
 - **Axios** – API calls
-- **React Datepicker, Date fns & React Rating** – UI components
-- **React hot toast, React icons** – For notification & icons
-- **Rechart** – Graph chart
+- **React Datepicker, Date fns & React Rating** – Date utilities
+- **React hot toast, React icons** – Notification system & icons
+- **Rechart** – Data visualization
 - **Firebase** – Authentication & real-time data storage
 
 ### 🔗 Backend:
