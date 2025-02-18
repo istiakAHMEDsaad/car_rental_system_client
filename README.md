@@ -52,7 +52,7 @@ Clone the repository and install dependencies:
 **Frontend**
 
 ```sh
-git clone https://github.com/yourusername/car-rental-system.git
-cd car-rental-system
+git clone https://github.com/istiakAHMEDsaad car_rental_system_client.git
+cd ./car_rental_system_client
 npm install
 ```
