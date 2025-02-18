@@ -49,10 +49,7 @@ const MyCar = () => {
   // handle delete function
   const handlePostData = async (id) => {
     try {
-      const { data } = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/single-car/${id}`
-      );
-      console.log(data);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/single-car/${id}`);
       fetchAllCarByAuthorEmail();
       toast.success('Data deleted successfully');
     } catch (error) {
@@ -117,7 +114,8 @@ const MyCar = () => {
       {authorPost?.length === 0 ? (
         <div className='mt-10 flex flex-col items-center justify-center'>
           <h2 className='text-center font-semibold text-2xl text-zinc-700'>
-            Look&apos;s like, You didn&apos;t post anything<br />
+            Look&apos;s like, You didn&apos;t post anything
+            <br />
             <span className='italic font-bold text-rose-400'>
               Please Add Some
             </span>

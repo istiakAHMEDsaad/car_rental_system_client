@@ -39,8 +39,6 @@ const AvailAbleCarDetails = () => {
   const { model, price, available, features, image, description, _id } =
     singleData || {};
 
-  // console.log("2", 2);
-
   const handleBookNow = () => {
     setIsModalOpen(true);
   };
@@ -65,7 +63,6 @@ const AvailAbleCarDetails = () => {
       authorEmai: authorEmail,
       bookId: _id,
     };
-    console.table(bookingInformation);
 
     try {
       await axios.post(

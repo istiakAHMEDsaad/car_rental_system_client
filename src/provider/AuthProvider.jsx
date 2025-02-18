@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import { createContext, useEffect, useState } from "react";
+import PropTypes from 'prop-types';
+import { createContext, useEffect, useState } from 'react';
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -10,8 +10,8 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
-} from "firebase/auth";
-import { app } from "../firebase/firebase.config";
+} from 'firebase/auth';
+import { app } from '../firebase/firebase.config';
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -62,7 +62,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("current user", currentUser);
       setLoading(false);
     });
     return () => {
@@ -79,14 +78,14 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     signInWithGoogle,
     handleResetPassword,
-    logOut
+    logOut,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 
-  AuthProvider.propTypes = {
+AuthProvider.propTypes = {
   children: PropTypes.object.isRequired,
 };
 

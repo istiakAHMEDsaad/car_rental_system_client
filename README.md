@@ -4,7 +4,7 @@ A modern and user-friendly **Car Rental System** that allows users to manage car
 
 ![Project Preview](./car_rental.PNG)  
 
-🔗 **Live Demo:** [Click here](#) *(...)*  
+🔗 **Live Demo:** [Click here](https://car-rental-system-mern-project-1111.netlify.app/) *(deploy project on netlify)*  
 
 ---
 

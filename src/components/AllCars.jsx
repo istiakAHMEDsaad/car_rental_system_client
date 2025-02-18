@@ -15,7 +15,6 @@ const AllCars = () => {
     fetchAllCar();
   }, []);
 
-  console.log(cars);
 
   return (
     <div>
